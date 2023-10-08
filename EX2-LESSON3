@@ -1,0 +1,131 @@
+import java.util.Scanner;
+
+public class DemoTest {
+
+    public static void main(String[] args) {
+        DemoTest demo = new DemoTest();
+        Scanner input = new Scanner(System.in);
+        int[] number = demo.setElementArray(input);
+        demo.beforeText();
+        demo.printArr(number);
+        demo.text(input);
+        demo.choiceFunctionSort(number, demo.checkKey(input.nextLine()));
+        demo.afterText();
+        demo.printArr(number);
+    }
+
+    public void text(Scanner input) {
+        System.out.println("==============================");
+        System.out.println("Please choice function:");
+        System.out.println("1.Key \"U\" => ascending sort.");
+        System.out.println("2.Key \"D\" => descending sort.");
+        input.nextLine();
+    }
+
+    public void beforeText() {
+        System.out.println("Array before sort:");
+    }
+
+    public void afterText() {
+        System.out.println("Array after sort:");
+    }
+
+    /**
+     * Phương thức kiểm tra chuỗi
+     *
+     * @param key chuỗi cần kiểm tra
+     * @return trả về một số nguyên kiểu int
+     */
+    public int checkKey(String key) {
+        int choice = 0;
+        if (key.equalsIgnoreCase("U")) {
+            choice = 1;
+        }
+        if (key.equalsIgnoreCase("D")) {
+            choice = 2;
+        }
+        return choice;
+    }
+
+    /**
+     * Phương thức có chức năng gán giá trị cho các phần tử trong mảng
+     *
+     * @param input nhập giá trị từ bàn phím
+     * @return trả về mảng số nguyên chứa các giá trị đã nhập vào từ bàn phím
+     */
+    public int[] setElementArray(Scanner input) {
+        System.out.println("Add array element number:");
+        int n = input.nextInt();
+        int[] number = new int[n];
+        for (int i = 0; i < number.length; i++) {
+            System.out.println("Value of index " + i + " :");
+            number[i] = input.nextInt();
+        }
+        return number;
+    }
+
+    /**
+     * @param number mảng cần xắp xếp
+     * @param choice lựa chọn chức năng
+     */
+    public void choiceFunctionSort(int[] number, int choice) {
+        switch (choice) {
+            case 1:
+                this.sortAscending(number);
+                break;
+            case 2:
+                this.sortDescending(number);
+                break;
+            default:
+                System.out.println("=========> Error! <==========");
+                break;
+        }
+    }
+
+    /**
+     * Phương thức có chức năng in ra các phần tử mảng
+     *
+     * @param arr mảng cần hiển thị
+     */
+    public void printArr(int[] arr) {
+        for (int index :
+                arr) {
+            System.out.print(index + ", ");
+        }
+        System.out.println();
+    }
+
+    /**
+     * Phương thức có chức năng xắp xếp theo thứ tự tăng dần
+     *
+     * @param arr mảng cần xắp xếp
+     */
+    public void sortAscending(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = arr.length - 1; j > i; j--) {
+                if (arr[i] > arr[j]) {
+                    int value = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = value;
+                }
+            }
+        }
+    }
+
+    /**
+     * Phương thức có chức năng xắp xếp theo thứ tự giảm dần
+     *
+     * @param arr mảng cần xắp xếp
+     */
+    public void sortDescending(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = arr.length - 1; j > i; j--) {
+                if (arr[i] < arr[j]) {
+                    int value = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = value;
+                }
+            }
+        }
+    }
+}
