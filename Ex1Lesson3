@@ -1,0 +1,37 @@
+public class Ex1Lesson3 {
+    public static void main(String[] args) {
+        String word1 = "reverse this word";
+        String word2 = "Hello world, how are you?";
+
+        Ex1Lesson3 ex1 = new Ex1Lesson3();
+
+        System.out.print("Input :" + word1 + "\n");
+        ex1.showResult(ex1.splitString(word1));
+        System.out.println("================================");
+        System.out.print("Input :" + word2 + "\n");
+        ex1.showResult(ex1.splitString(word2));
+    }
+
+    /**
+     * Phương thức tách chuỗi
+     *
+     * @param word chuỗi cần tách
+     * @return trả về một mảng string
+     */
+    public String[] splitString(String word) {
+        return word.split("\\s+");//Tách các phần tử tại vị trí khoảng trắng
+    }
+
+    /**
+     * Phương thức hiển thị mảng
+     *
+     * @param arr mảng cần hiển thị
+     */
+    public void showResult(String[] arr) {
+        System.out.print("Output :");
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
